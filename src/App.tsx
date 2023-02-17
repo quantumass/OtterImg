@@ -2,10 +2,11 @@ import { computed, defineComponent, onMounted, PropType, reactive, ref, watch } 
 import { useRoute, useRouter } from 'vue-router';
 import AdminLayout from './layouts/AdminLayout/AdminLayout.vue';
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout.vue';
+
 export default defineComponent({
 	components: {
 		DefaultLayout,
-		AdminLayout,
+		AdminLayout
 	},
 	computed: {
 		layout() {

@@ -15,9 +15,7 @@
                   Your story starts with us.
                 </h1>
                 <p class="mt-4 text-lg text-gray-200">
-                  This is a simple example of a Landing Page you can build using
-                  Notus JS. It features multiple CSS components based on the
-                  Tailwind CSS design system.
+                  OtterImg's background removal service transforms your visuals with lightning-fast processing times and precise accuracy. Our mission is to make professional-looking visuals accessible to everyone. 
                 </p>
               </div>
             </div>
@@ -38,10 +36,9 @@
                   <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                     <font-awesome-icon :icon="['fas', 'award']" />
                   </div>
-                  <h6 class="text-xl font-semibold">Awarded Agency</h6>
+                  <h6 class="text-xl font-semibold">Lightning-fast processing times</h6>
                   <p class="mt-2 mb-4 text-gray-500">
-                    Divide details about your product or agency work into parts.
-                    A paragraph describing a feature will be enough.
+                    Our background removal services offer some of the fastest processing times in the industry, allowing you to transform your visuals quickly and easily.
                   </p>
                 </div>
               </div>
@@ -52,10 +49,9 @@
                   <div class="text-black p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
                     <font-awesome-icon :icon="['fas', 'retweet']" />
                   </div>
-                  <h6 class="text-xl font-semibold">Free Revisions</h6>
+                  <h6 class="text-xl font-semibold">Advanced AI technology</h6>
                   <p class="mt-2 mb-4 text-gray-500">
-                    Keep you user engaged by providing meaningful information.
-                    Remember that by this time, the user is curious.
+                    We use advanced AI technology to ensure precise accuracy when removing backgrounds from your images, even when dealing with complex backgrounds.
                   </p>
                 </div>
               </div>
@@ -66,10 +62,9 @@
                   <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                     <font-awesome-icon :icon="['fas', 'fingerprint']" />
                   </div>
-                  <h6 class="text-xl font-semibold">Verified Company</h6>
+                  <h6 class="text-xl font-semibold">Dedicated customer support</h6>
                   <p class="mt-2 mb-4 text-gray-500">
-                    Write a few lines about each one. A paragraph describing a
-                    feature will be enough. Keep you user engaged!
+                    Our team is dedicated to providing you with top-notch customer support, helping you with any questions or issues you may encounter along the way.
                   </p>
                 </div>
               </div>

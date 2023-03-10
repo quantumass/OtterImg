@@ -1,31 +1,8 @@
 <template>
-    <vue-final-modal v-model="isPaymentModalActive" classes="modal-container" content-class="modal-content">
-      <div class="-m-4 p-4 relative h-custom-screen overflow-y-auto">
-        <div class="flex items-center p-2">
-          <h3 class="text-xl flex-1 uppercase ">Update profile</h3>
-          <button class="text-white rounded w-9 h-9 bg-red-600" @click="isPaymentModalActive = false">
-            X
-          </button>
-        </div>
-        <hr />
-        <div class="p-8 w-400px">
-          <img :src="require('@/assets/img/credits.png')" class="w-1/2 mx-auto">
-          <div class="py-4">
-          Elevate your images to the next level with our upscaling service. Purchase 300 credit points and transform your low-resolution pictures into stunning masterpieces.
-          </div>
-          <br />
-          <div id="smart-button-container">
-            <div style="text-align: center;">
-              <div id="paypal-button-container"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </vue-final-modal>
     <vue-final-modal v-model="isModalActive" classes="modal-container" content-class="modal-content">
         <form v-on:submit.prevent="updateUser" action="#" method="POST">
-        <div class="p-4 relative h-custom-screen overflow-y-auto">
-            <div class="-m-4">
+        <div class="relative h-custom-screen overflow-y-auto overflow-x-hidden">
+            <div class="">
               <div class="flex items-center p-2">
                 <h3 class="text-xl flex-1 uppercase ">Update profile</h3>
                 <button class="text-white rounded w-9 h-9 bg-red-600" @click="isModalActive = false">
@@ -83,8 +60,8 @@ focus:bg-white focus:outline-none">
       </button>
     </div>
     </form>
-    </vue-final-modal>
-   <section class="relative block h-96">
+  </vue-final-modal>
+   <section class="relative block h-96" id="tab-nav">
     <div class="absolute top-0 w-full h-full bg-center bg-cover" :style="`background-image: url(${require('@/assets/img/user-cover.jpg')});`">
       <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
     </div>
@@ -97,41 +74,60 @@ focus:bg-white focus:outline-none">
   <section class="relative pt-16 bg-blueGray-200">
     <div class="container mx-auto px-4">
       <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64 pb-6">
-        <div class="px-6">
+        <div class="bg-white mb-8">
+            <nav class="flex flex-col sm:flex-row relative">
+                <button 
+                  v-for="(tab, index) in tabNames" 
+                  :key="index" 
+                  class=" py-4 px-6 block hover:text-indigo-500 focus:outline-none  border-b-2 font-medium"
+                  :class="selectedTab == tab || (index == 0 && selectedTab === null) ? 'text-indigo-500 border-indigo-500 z-10' : 'text-gray-400 border-white'"
+                  @click="selectTab(tab)"
+                >
+                    {{ tab }}
+                </button>
+                <div class="w-full border-b-2 border-gray-100 absolute bottom-0 left-0"></div>
+            </nav>
+        </div>
+        <section v-if="selectedTab == tabNames[0] || selectedTab === null" class="px-6">
           <div class="flex flex-wrap justify-center">
             <div class="w-full lg:w-4/12 px-4 lg:order-2">
-              <div class="relative w-full flex justify-center">
+              <div class="relative h-32 w-full flex justify-center">
                 <img 
                     v-if="user.avatar != 'filename.jpg' && user.avatar"
                     alt="..." 
                     :src="user.avatar" 
-                    class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 h-32 w-32"
+                    class="shadow-xl rounded-full align-middle border-none absolute h-full w-32"
                 >
-                <svg v-else class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16" viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="128" height="128"><title>Elizabeth Cady</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#fff5d6"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(333 18 18) scale(1)" fill="#d96153" rx="6"></rect><g transform="translate(3.5 3.5) rotate(-3 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="11" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="23" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
+                <svg v-else class="shadow-xl rounded-full h-auto align-middle border-none absolute" viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="128" height="128"><title>Elizabeth Cady</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#fff5d6"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(333 18 18) scale(1)" fill="#d96153" rx="6"></rect><g transform="translate(3.5 3.5) rotate(-3 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="11" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="23" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
               </div>
+              
             </div>
             <div class="w-full lg:w-4/12 lg:order-3 lg:text-right lg:self-center text-center">
-              <div class="py-6 mt-32 sm:mt-0">
-                <button @click="showUserForm" class="bg-brightRed active:bg-brightRedLight uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                  Update profile
-                </button>
-              </div>
             </div>
             <div class="w-full lg:w-4/12 lg:order-1 lg:text-left lg:self-center text-center">
-              <div class="py-6 mt-32 sm:mt-0">
-                <button @click="logout" class="bg-black-800 active:bg-black-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                    Logout
-                  </button>
-              </div>
             </div>
           </div>
-          <div class="text-center mt-12">
+          <div class="text-center mt-6">
             <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 capitalize">
               {{ user.name }}
             </h3>
             <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
               <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
               {{ user.email }}
+            </div>
+            <div class="py-2 inline-block sm:mt-0">
+              <button @click="showUserForm" class="bg-brightRed w-28 flex items-center gap-1 active:bg-brightRedLight uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                <div class="flex items-center gap-1">
+                  <font-awesome-icon :icon="['fas', 'edit']" class="inline-block w-4" />
+                  Update
+                </div>
+              </button>
+            </div>
+            <div class="py-2 inline-block sm:mt-0">
+              <button @click="logout" class="bg-black-800 w-28 flex items-center gap-1 active:bg-black-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" class="inline-block w-4" />
+                  Logout
+                </button>
             </div>
             <div class="flex justify-center py-4 lg:pt-4 pt-8">
               <div class="mr-4 p-3 text-center">
@@ -145,9 +141,10 @@ focus:bg-white focus:outline-none">
               </div>
             </div>
             <div>
-              <button @click="isPaymentModalActive = true" class="bg-black-800 active:bg-black-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                  Buy 300 credits
-                </button>
+              <router-link :to="{ name: 'Profile', query: { tab: tabNames[1]} }" class="bg-gradient-to-r from-yellow-500 to-yellow-600 inline-flex items-center gap-1 active:bg-black-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                <font-awesome-icon :icon="['fas', 'credit-card']" class="inline-block w-2" />  
+                buy 300 credits
+              </router-link>
             </div>
             <div class="mb-2 text-blueGray-600 mt-10">
               <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>{{ levels[0].name }} - {{ levels[0].description }}
@@ -166,12 +163,13 @@ focus:bg-white focus:outline-none">
               </div>
             </div>
           </div>
-        </div>
-        <section class="main container mx-auto px-4 border-t border-blueGray-200">
-            <br />
-            <h6 class="font-bold mb-4">Your gallery</h6>
+        </section>
+        <section v-if="selectedTab == tabNames[2]" class="main container mx-auto px-4">
             <div v-if="!imagesLoaded">
               <loader title="loading your gallery ..." isLoading="true"></loader>
+            </div>
+            <div class="w-full mb-4">
+              <BGRemover />
             </div>
             <div v-show="imagesLoaded" class="main_content">
                 <div v-if="totalImages == 0">
@@ -181,9 +179,9 @@ focus:bg-white focus:outline-none">
                 </div>
                 <div v-for="(image, key) in images" :key="key" v-show="!image.isHidden" class="picture_wrapper">
                   <div>
-                    <ImgComparisonSlider class="shadow-lg">
-                      <img slot="first" style="width: 100%" :src="image.publicSrc" alt="" />
-                      <img slot="second" style="width: 100%" :src="image.optimizedPublicSrc" @load="imageLoaded" @error="() => imageError(key)" alt="" />
+                    <ImgComparisonSlider class="shadow-lg w-full">
+                      <img slot="first" class="w-full" :src="image.publicSrc" alt="" />
+                      <img slot="second" class="w-full" :src="image.optimizedPublicSrc" @load="imageLoaded" @error="() => imageError(key)" alt="" />
                     </ImgComparisonSlider>
                     <a target="_blank" :href="image.optimizedPublicSrc" :download="image.convertedImage" class="bg-black-900 inline-flex  items-center text-white w-full mt-2 py-2 px-4 rounded hover:bg-black-600">
                       <font-awesome-icon :icon="['fas', 'download']" class="mr-2 w-4" />
@@ -199,6 +197,128 @@ focus:bg-white focus:outline-none">
               </button>
             </div>
         </section>
+        <section v-if="selectedTab == tabNames[3]" class="main container flex flex-wrap gap-4 mx-auto px-4">
+          <a href="https://imgotter.com" target="_blank" class="w-1/4 rounded-2xl cursor-pointer shadow-lg bg-cover" :style="`background-image: url('${require('@/assets/img/pattern-transparent-image-orange.png')}');`">
+            <img class="w-full" :src="require('@/assets/img/illustration-intro-rmbg.png')" />
+            <a target="_blank" class="bg-black-900 inline-flex items-center text-white w-full mt-2 py-2 px-4 rounded-b-2xl">
+              <font-awesome-icon :icon="['fas', 'pen-nib']" class="mr-2 w-4" />
+              Background Remover
+            </a>
+          </a>
+          <a class="w-1/4 relative rounded-2xl cursor-pointer shadow-lg bg-cover" :style="`background-image: url('${require('@/assets/img/pattern-transparent-image-orange.png')}');filter: grayscale(1);`">
+            <div class=" absolute top-0 left-0 w-full h-full bg-gray-800 rounded-2xl opacity-75 "></div>
+            <div class=" text-2xl text-white absolute w-full text-center uppercase" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">Comming Soon</div>
+            <img class="w-full" :src="require('@/assets/img/illustration-intro.png')" />
+            <a target="_blank" class="bg-black-900 inline-flex items-center text-white w-full mt-2 py-2 px-4 rounded-b-2xl">
+              <font-awesome-icon :icon="['fas', 'pen-nib']" class="mr-2 w-4" />
+              UP SCALING IMAGE
+            </a>
+          </a>
+          <a class="w-1/4 rounded-2xl cursor-pointer shadow-lg bg-cover" :style="`background-image: url('${require('@/assets/img/pattern-transparent-image-orange.png')}');filter: grayscale(1);`">
+            <div class=" absolute top-0 left-0 w-full h-full bg-gray-800 rounded-2xl opacity-75 "></div>
+            <div class=" text-2xl text-white absolute w-full text-center uppercase" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">Comming Soon</div>
+            <img class="w-full" :src="require('@/assets/img/illustration-intro-optimize.png')" />
+            <a target="_blank" class="bg-black-900 inline-flex items-center text-white w-full mt-2 py-2 px-4 rounded-b-2xl">
+              <font-awesome-icon :icon="['fas', 'pen-nib']" class="mr-2 w-4" />
+              PNG Optimizer
+            </a>
+          </a>
+        </section>
+        <section v-show="selectedTab == tabNames[1]" >
+          <div class="bg-white relative">
+            <div class="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-0 mr-auto mb-0 ml-auto max-w-7xl
+                xl:px-5 lg:flex-row">
+              <div class="flex flex-col items-center w-full pt-5 pr-10 pb-20 pl-10 lg:flex-row">
+                <div class="w-full bg-cover relative max-w-md lg:max-w-2xl lg:w-7/12">
+                  <div class="flex flex-col items-center justify-center w-full h-full relative p-24 pr-28">
+                    <img :src="require('@/assets/img/payment.png')" class="btn-"/>
+                  </div>
+                </div>
+                <div class="w-full mt-20 mr-0 mb-0 ml-0 relative z-10 max-w-2xl lg:mt-0 lg:w-5/12">
+                  <div class="flex flex-col items-start justify-start pt-10 pr-10 pb-10 pl-10 bg-white shadow-2xl rounded-xl
+                      relative z-10">
+                    <p class="w-full text-2xl font-medium text-center leading-snug uppercase">More credits points</p>
+                    <div class="relative h-custom-screen overflow-y-auto overflow-x-hidden">
+                    <div class="p-8 w-400px">
+                      <img :src="require('@/assets/img/credits.png')" class="w-full mx-auto">
+                      <div class="py-4">
+                      Elevate your images to the next level with our IMGOtter services. Purchase 300 credit points and transform your pictures into transparent masterpieces.
+                      <p class="font-extrabold">With just <span class="line-through" >35$</span> 25$ Buy Know</p>
+                      </div>
+                      <br />
+                      <div id="smart-button-container">
+                        <div style="text-align: center;">
+                          <div id="paypal-button-container"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <svg viewbox="0 0 91 91" class="absolute top-0 left-0 z-0 w-32 h-32 -mt-12 -ml-12 text-yellow-300
+                      fill-current"><g stroke="none" strokewidth="1" fillrule="evenodd"><g fillrule="nonzero"><g><g><circle
+                      cx="3.261" cy="3.445" r="2.72"/><circle cx="15.296" cy="3.445" r="2.719"/><circle cx="27.333" cy="3.445"
+                      r="2.72"/><circle cx="39.369" cy="3.445" r="2.72"/><circle cx="51.405" cy="3.445" r="2.72"/><circle cx="63.441"
+                      cy="3.445" r="2.72"/><circle cx="75.479" cy="3.445" r="2.72"/><circle cx="87.514" cy="3.445" r="2.719"/></g><g
+                      transform="translate(0 12)"><circle cx="3.261" cy="3.525" r="2.72"/><circle cx="15.296" cy="3.525"
+                      r="2.719"/><circle cx="27.333" cy="3.525" r="2.72"/><circle cx="39.369" cy="3.525" r="2.72"/><circle
+                      cx="51.405" cy="3.525" r="2.72"/><circle cx="63.441" cy="3.525" r="2.72"/><circle cx="75.479" cy="3.525"
+                      r="2.72"/><circle cx="87.514" cy="3.525" r="2.719"/></g><g transform="translate(0 24)"><circle cx="3.261"
+                      cy="3.605" r="2.72"/><circle cx="15.296" cy="3.605" r="2.719"/><circle cx="27.333" cy="3.605" r="2.72"/><circle
+                      cx="39.369" cy="3.605" r="2.72"/><circle cx="51.405" cy="3.605" r="2.72"/><circle cx="63.441" cy="3.605"
+                      r="2.72"/><circle cx="75.479" cy="3.605" r="2.72"/><circle cx="87.514" cy="3.605" r="2.719"/></g><g
+                      transform="translate(0 36)"><circle cx="3.261" cy="3.686" r="2.72"/><circle cx="15.296" cy="3.686"
+                      r="2.719"/><circle cx="27.333" cy="3.686" r="2.72"/><circle cx="39.369" cy="3.686" r="2.72"/><circle
+                      cx="51.405" cy="3.686" r="2.72"/><circle cx="63.441" cy="3.686" r="2.72"/><circle cx="75.479" cy="3.686"
+                      r="2.72"/><circle cx="87.514" cy="3.686" r="2.719"/></g><g transform="translate(0 49)"><circle cx="3.261"
+                      cy="2.767" r="2.72"/><circle cx="15.296" cy="2.767" r="2.719"/><circle cx="27.333" cy="2.767" r="2.72"/><circle
+                      cx="39.369" cy="2.767" r="2.72"/><circle cx="51.405" cy="2.767" r="2.72"/><circle cx="63.441" cy="2.767"
+                      r="2.72"/><circle cx="75.479" cy="2.767" r="2.72"/><circle cx="87.514" cy="2.767" r="2.719"/></g><g
+                      transform="translate(0 61)"><circle cx="3.261" cy="2.846" r="2.72"/><circle cx="15.296" cy="2.846"
+                      r="2.719"/><circle cx="27.333" cy="2.846" r="2.72"/><circle cx="39.369" cy="2.846" r="2.72"/><circle
+                      cx="51.405" cy="2.846" r="2.72"/><circle cx="63.441" cy="2.846" r="2.72"/><circle cx="75.479" cy="2.846"
+                      r="2.72"/><circle cx="87.514" cy="2.846" r="2.719"/></g><g transform="translate(0 73)"><circle cx="3.261"
+                      cy="2.926" r="2.72"/><circle cx="15.296" cy="2.926" r="2.719"/><circle cx="27.333" cy="2.926" r="2.72"/><circle
+                      cx="39.369" cy="2.926" r="2.72"/><circle cx="51.405" cy="2.926" r="2.72"/><circle cx="63.441" cy="2.926"
+                      r="2.72"/><circle cx="75.479" cy="2.926" r="2.72"/><circle cx="87.514" cy="2.926" r="2.719"/></g><g
+                      transform="translate(0 85)"><circle cx="3.261" cy="3.006" r="2.72"/><circle cx="15.296" cy="3.006"
+                      r="2.719"/><circle cx="27.333" cy="3.006" r="2.72"/><circle cx="39.369" cy="3.006" r="2.72"/><circle
+                      cx="51.405" cy="3.006" r="2.72"/><circle cx="63.441" cy="3.006" r="2.72"/><circle cx="75.479" cy="3.006"
+                      r="2.72"/><circle cx="87.514" cy="3.006" r="2.719"/></g></g></g></g></svg>
+                  <svg viewbox="0 0 91 91" class="absolute bottom-0 right-0 z-0 w-32 h-32 -mb-12 -mr-12 text-indigo-500
+                      fill-current"><g stroke="none" strokewidth="1" fillrule="evenodd"><g fillrule="nonzero"><g><g><circle
+                      cx="3.261" cy="3.445" r="2.72"/><circle cx="15.296" cy="3.445" r="2.719"/><circle cx="27.333" cy="3.445"
+                      r="2.72"/><circle cx="39.369" cy="3.445" r="2.72"/><circle cx="51.405" cy="3.445" r="2.72"/><circle cx="63.441"
+                      cy="3.445" r="2.72"/><circle cx="75.479" cy="3.445" r="2.72"/><circle cx="87.514" cy="3.445" r="2.719"/></g><g
+                      transform="translate(0 12)"><circle cx="3.261" cy="3.525" r="2.72"/><circle cx="15.296" cy="3.525"
+                      r="2.719"/><circle cx="27.333" cy="3.525" r="2.72"/><circle cx="39.369" cy="3.525" r="2.72"/><circle
+                      cx="51.405" cy="3.525" r="2.72"/><circle cx="63.441" cy="3.525" r="2.72"/><circle cx="75.479" cy="3.525"
+                      r="2.72"/><circle cx="87.514" cy="3.525" r="2.719"/></g><g transform="translate(0 24)"><circle cx="3.261"
+                      cy="3.605" r="2.72"/><circle cx="15.296" cy="3.605" r="2.719"/><circle cx="27.333" cy="3.605" r="2.72"/><circle
+                      cx="39.369" cy="3.605" r="2.72"/><circle cx="51.405" cy="3.605" r="2.72"/><circle cx="63.441" cy="3.605"
+                      r="2.72"/><circle cx="75.479" cy="3.605" r="2.72"/><circle cx="87.514" cy="3.605" r="2.719"/></g><g
+                      transform="translate(0 36)"><circle cx="3.261" cy="3.686" r="2.72"/><circle cx="15.296" cy="3.686"
+                      r="2.719"/><circle cx="27.333" cy="3.686" r="2.72"/><circle cx="39.369" cy="3.686" r="2.72"/><circle
+                      cx="51.405" cy="3.686" r="2.72"/><circle cx="63.441" cy="3.686" r="2.72"/><circle cx="75.479" cy="3.686"
+                      r="2.72"/><circle cx="87.514" cy="3.686" r="2.719"/></g><g transform="translate(0 49)"><circle cx="3.261"
+                      cy="2.767" r="2.72"/><circle cx="15.296" cy="2.767" r="2.719"/><circle cx="27.333" cy="2.767" r="2.72"/><circle
+                      cx="39.369" cy="2.767" r="2.72"/><circle cx="51.405" cy="2.767" r="2.72"/><circle cx="63.441" cy="2.767"
+                      r="2.72"/><circle cx="75.479" cy="2.767" r="2.72"/><circle cx="87.514" cy="2.767" r="2.719"/></g><g
+                      transform="translate(0 61)"><circle cx="3.261" cy="2.846" r="2.72"/><circle cx="15.296" cy="2.846"
+                      r="2.719"/><circle cx="27.333" cy="2.846" r="2.72"/><circle cx="39.369" cy="2.846" r="2.72"/><circle
+                      cx="51.405" cy="2.846" r="2.72"/><circle cx="63.441" cy="2.846" r="2.72"/><circle cx="75.479" cy="2.846"
+                      r="2.72"/><circle cx="87.514" cy="2.846" r="2.719"/></g><g transform="translate(0 73)"><circle cx="3.261"
+                      cy="2.926" r="2.72"/><circle cx="15.296" cy="2.926" r="2.719"/><circle cx="27.333" cy="2.926" r="2.72"/><circle
+                      cx="39.369" cy="2.926" r="2.72"/><circle cx="51.405" cy="2.926" r="2.72"/><circle cx="63.441" cy="2.926"
+                      r="2.72"/><circle cx="75.479" cy="2.926" r="2.72"/><circle cx="87.514" cy="2.926" r="2.719"/></g><g
+                      transform="translate(0 85)"><circle cx="3.261" cy="3.006" r="2.72"/><circle cx="15.296" cy="3.006"
+                      r="2.719"/><circle cx="27.333" cy="3.006" r="2.72"/><circle cx="39.369" cy="3.006" r="2.72"/><circle
+                      cx="51.405" cy="3.006" r="2.72"/><circle cx="63.441" cy="3.006" r="2.72"/><circle cx="75.479" cy="3.006"
+                      r="2.72"/><circle cx="87.514" cy="3.006" r="2.719"/></g></g></g></g></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </section>
@@ -207,9 +327,10 @@ focus:bg-white focus:outline-none">
   <script>
 
   import pb from '@/services/PocketConfig';
-  import { logError } from '@/utils/helpers'
+  import { logError, getToast } from '@/utils/helpers'
   import { $vfm, VueFinalModal, ModalsContainer } from 'vue-final-modal'
   import { ImgComparisonSlider } from '@img-comparison-slider/vue';
+  import BGRemover from './components/BGRemover.vue'
 
   export default {
     data: () => ({
@@ -228,6 +349,8 @@ focus:bg-white focus:outline-none">
             {name: "The Renaissance", description: "good at generating a variety of different types of images", university: "University of Renaissance"},
             {name: "The Level Up", description: "consistently generating more and more creative and funny images", university: "University of Upgraders"}
         ],
+        selectedTab: null,
+        tabNames: ["Personal Informations", "Buying more credits", "Gallery", "Tools"],
         form: {},
         page: 1,
         totalImages: 0,
@@ -245,7 +368,13 @@ focus:bg-white focus:outline-none">
     components: {
         VueFinalModal,
         ModalsContainer,
+        BGRemover,
         ImgComparisonSlider
+    },
+    watch: {
+      $route: function() {
+        this.checkRoutes()
+      }
     },
     mounted: function() {
         if (pb.authStore && pb.authStore.model) {
@@ -255,7 +384,7 @@ focus:bg-white focus:outline-none">
           // Create a new script element
           var script = document.createElement("script");
           // Set the source and attributes for the PayPal script
-          script.src = "https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD";
+          script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.VUE_APP_SANDBOX_PAYPAL_PAYMENT_CLIENT}&currency=USD`;
           script.setAttribute("data-sdk-integration-source", "button-factory");
           // Define a function to be called when the script has finished loading
           script.onload = () => {
@@ -264,12 +393,29 @@ focus:bg-white focus:outline-none">
           // Find the <head> tag and append the script to it
           var head = document.getElementsByTagName("head")[0];
           head.appendChild(script);
+          this.checkRoutes()
         } else {
           this.$router.push({ name: 'Login' })
         }
     },
     methods: {
+      async checkRoutes() {
+        await pb.collection('users').authRefresh()
+        let nav = document.querySelector("#tab-nav")
+        nav.scrollIntoView();
+        if (this.$route.query.credits) {
+          this.selectedTab = this.tabNames[1]
+        } else if (this.$route.query.tab) {
+          this.selectedTab = this.$route.query.tab
+        }
+      },
+      selectTab(tab) {
+        // this.selectedTab = tab
+        this.$router.push({ name: "Profile", query: { tab } })
+      },
       initPayPalButton() {
+          let vm = this
+
           paypal.Buttons({
             style: {
               shape: 'rect',
@@ -286,23 +432,29 @@ focus:bg-white focus:outline-none">
             },
 
             onApprove: function(data, actions) {
-              return actions.order.capture().then(function(orderData) {
-                
-                // Full available details
-                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-
-                // Show a success message within this page, e.g.
-                const element = document.getElementById('paypal-button-container');
-                element.innerHTML = '';
-                element.innerHTML = '<h3>Thank you for your payment!</h3>';
-
-                // Or go to another URL:  actions.redirect('thank_you.html');
-                
+              console.log("data: ", data)
+              return actions.order.capture().then(async function(orderData) {
+                vm.isPaymentModalActive = false
+                await pb.collection('users').update(vm.user.id, {
+                  paymentInfo: {
+                    ...orderData,
+                    paymentId: data.paymentID
+                  }
+                });
+                await pb.collection('users').authRefresh()
+                getToast(vm).fire({
+                  icon: "success",
+                  title: "Thank you, Your credits points will be updated in seconds"
+                });
               });
             },
 
             onError: function(err) {
               console.log(err);
+              getToast(vm).fire({
+                icon: "error",
+                title: "Sorry we couldn't verify the payment"
+              });
             }
           }).render('#paypal-button-container');
         },
@@ -365,14 +517,15 @@ focus:bg-white focus:outline-none">
             this.isLoading = true
 
             Object.keys(this.form).forEach(key => {
+              if (!this.formData) this.formData = new FormData();
               if (key != "avatar") this.formData.append(key, this.form[key]);
             });
 
             try {
               await pb.collection('users').update(this.user.id, this.formData);
+              await pb.collection('users').authRefresh()
               this.isModalActive = false
               this.isLoading = false
-              location.reload();
             } catch (error) {
               this.isLoading = false
               logError(this, error)

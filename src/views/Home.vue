@@ -9,101 +9,14 @@
         <!-- Left item -->
         <div class="flex flex-col mb-32 space-y-12 md:w-1/2">
           <h1
-            class="max-w-md text-4xl font-bold text-center md:text-5xl md:text-left"
+            class="text-4xl font-bold text-center md:text-5xl md:text-left"
           >
-            Upscale and Enhance Your Images Using AI
+            Quick & Easy Background Remover Tool: Remove Image Backgrounds in Seconds
           </h1>
           <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
-            We use state-of-the-art AI to upscale and enhance images.
+            Remove image backgrounds with ease. Click "Browse" to select your image and let our Background Remover Tool work its magic!
           </p>
-
-          <form class="mb-2">
-            <input 
-              type="file" 
-              name="file" 
-              ref="image" 
-              id="file" 
-              class="sr-only"
-              @change="onFileChange" 
-              accept="image/*"
-            />
-            <label
-              :for="!isLoading ? 'file' : ''"
-              class="relative bg-white flex min-h-[200px] items-center justify-center rounded-md border-2 border-dashed border-[#e0e0e0] text-center"
-              :class="[!isLoading ? 'p-12' : '']"
-            >
-              <img 
-                v-if="!isLoading"
-                :src="require('@/assets/img/upload.png')" 
-                class="absolute bottom-0 left-0 lg:w-52 w-0 m-2" 
-              />
-              <div v-if="!isLoading">
-                <span class="mb-2 block text-xl font-semibold text-[#07074D]">
-                  Drop files here
-                </span>
-                <span class="mb-2 block text-base font-medium text-[#6B7280]">
-                  Or
-                </span>
-                <span
-                  class="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]"
-                >
-                  Browse
-                </span>
-              </div>
-              <div v-else class="w-full">
-                <!-- follow me on twitter @asad_codes -->
-                <div class="flex flex-wrap place-items-center w-full">
-                    <!-- card -->
-                    <div class="shadow-lg rounded-xl p-4 bg-white relative overflow-hidden w-full">
-                        <div class="w-full h-full block">
-                            <div class="w-full">
-                                <p class="text-gray-800 text-sm font-medium mb-2">
-                                    Working On:
-                                </p>
-                                <p class="text-gray-800 text-xl font-medium mb-2">
-                                  <loader :title="tasks[step].title" :isLoading="step == 6 ? false : isLoading" />  
-                                </p>
-                                <p class="text-gray-400 text-sm mb-4">
-                                  {{ tasks[step].description }}
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between my-2">
-                                <p v-if="step < 6" class="text-gray-300 text-sm">
-                                    {{ step + 1 }}/6 task completed
-                                </p>
-                                <p v-else class="text-gray-300 text-sm">
-                                    completed
-                                </p>
-                            </div>
-                            <div class="w-full h-2 bg-blue-200 rounded-full">
-                                <div v-if="step < 6" :class="`w-${step + 1}/6 h-full text-center text-xs text-white bg-blue-600 rounded-full`">
-                                </div>
-                                <div v-else :class="`w-full h-full text-center text-xs text-white bg-green-600 rounded-full`">
-                                </div>
-                            </div>
-                            <div v-if="step == 6 && image" class="mt-2">
-                                <loader v-if="!isImageLoaded && !isImageError" title="loading ..." :isLoading="true" ></loader>
-                                <div v-show="isImageLoaded || isImageError">
-                                  <ImgComparisonSlider class="shadow-lg">
-                                    <img slot="first" style="width: 100%" :src="image.publicSrc" alt="" />
-                                    <img slot="second" style="width: 100%" :src="image.optimizedPublicSrc" @load="isImageLoaded = true" @error="isImageError = true" alt="" />
-                                  </ImgComparisonSlider>
-                                  <a target="_blank" :href="image.optimizedPublicSrc" :download="image.convertedImage" class="bg-black-900 inline-flex  items-center text-white w-full mt-2 py-2 px-4 rounded hover:bg-black-600">
-                                    <font-awesome-icon :icon="['fas', 'download']" class="mr-2 w-4" />
-                                    DOWNLOAD
-                                  </a>
-                                  <button @click="retry" class="bg-brightRed inline-flex items-center text-white w-full mt-2 py-2 px-4 rounded">
-                                    <font-awesome-icon :icon="['fas', 'arrows-rotate']" class="mr-2 w-4" />
-                                    Try another one
-                                  </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </label>
-          </form>
+          <BGRemover />
           <!-- <div class="flex justify-center md:justify-start">
             <a
               href="#"
@@ -114,7 +27,7 @@
         </div>
         <!-- Image -->
         <div class="md:w-1/2">
-          <img :src="require('@/assets/img/illustration-intro.png')" alt="" />
+          <img :src="require('@/assets/img/illustration-intro-rmbg.png')" alt="" />
         </div>
       </div>
     </section>
@@ -128,12 +41,10 @@
         <!-- What's Different -->
         <div class="flex flex-col space-y-12 md:w-1/2">
           <h2 class="max-w-md text-4xl font-bold text-center md:text-left">
-            What's different about Manage?
+            What's our superpower ?
           </h2>
           <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
-            Manage provides all the functionality your team needs, without the
-            complexity. Our software is tailor-made for modern digital product
-            teams.
+            Our tool is lightning-fast at removing backgrounds from any image, without any need for user selection. With effortless and speedy processing, you can transform your visuals in seconds, creating standout images that make an impact.
           </p>
         </div>
 
@@ -152,20 +63,17 @@
                   01
                 </div>
                 <h3 class="text-base font-bold md:mb-4 md:hidden">
-                  Track company-wide progress
+                  Effortless
                 </h3>
               </div>
             </div>
 
             <div>
               <h3 class="hidden mb-4 text-lg font-bold md:block">
-                Track company-wide progress
+                Effortless
               </h3>
               <p class="text-darkGrayishBlue">
-                See how your day-to-day tasks fit into the wider vision. Go from
-              tracking progress at the milestone level all the way down to the
-                smallest of details. Never lose sight of the bigger picture
-                again.
+                Our Background Remover Tool makes removing image backgrounds quick and easy, allowing you to transform your images in just a few clicks.
               </p>
             </div>
           </div>
@@ -183,19 +91,17 @@
                   02
                 </div>
                 <h3 class="text-base font-bold md:mb-4 md:hidden">
-                  Advanced built-in reports
+                  Versatile
                 </h3>
               </div>
             </div>
 
             <div>
               <h3 class="hidden mb-4 text-lg font-bold md:block">
-                Advanced built-in reports
+                Versatile
               </h3>
               <p class="text-darkGrayishBlue">
-                Set internal delivery estimates and track progress toward
-                company goals. Our customisable dashboard helps you build out
-                the reports you need to keep key stakeholders informed.
+                Whether you're editing product photos for your online store, creating social media graphics, or simply removing the background from a personal photo, our tool can help you achieve the results you need.
               </p>
             </div>
           </div>
@@ -213,19 +119,17 @@
                   03
                 </div>
                 <h3 class="text-base font-bold md:mb-4 md:hidden">
-                  Everything you need in one place
+                  High-quality
                 </h3>
               </div>
             </div>
 
             <div>
               <h3 class="hidden mb-4 text-lg font-bold md:block">
-                Everything you need in one place
+                High-quality
               </h3>
               <p class="text-darkGrayishBlue">
-                Stop jumping from one service to another to communicate, store
-                files, track tasks and share documents. Manage offers an
-                all-in-one team productivity solution.
+                The Background Remover Tool uses advanced algorithms to ensure that the removed background is clean and accurate, resulting in a professional-looking image that's ready to use.
               </p>
             </div>
           </div>
@@ -250,9 +154,7 @@
             <img :src="require('@/assets/img/avatar-anisha.png')" class="w-16 -mt-14" alt="" />
             <h5 class="text-lg font-bold">Anisha Li</h5>
             <p class="text-sm text-darkGrayishBlue">
-              “Manage has supercharged our team’s workflow. The ability to
-              maintain visibility on larger milestones at all times keeps
-              everyone motivated.”
+              “This tool is amazing! It was so easy to remove the background from my photos, and the results were fantastic. With lightning-fast processing and precise accuracy, my product photos look better than ever.”
             </p>
           </div>
 
@@ -263,9 +165,7 @@
             <img :src="require('@/assets/img/avatar-ali.png')" class="w-16 -mt-14" alt="" />
             <h5 class="text-lg font-bold">Ali Bravo</h5>
             <p class="text-sm text-darkGrayishBlue">
-              “We have been able to cancel so many other subscriptions since
-              using Manage. There is no more cross-channel confusion and
-              everyone is much more focused.”
+              “This tool is a game-changer! It's incredibly easy to use and the results are stunning. With lightning-fast processing and precise accuracy, I can create professional-looking images without the hassle.”
             </p>
           </div>
 
@@ -276,18 +176,16 @@
             <img :src="require('@/assets/img/avatar-richard.png')" class="w-16 -mt-14" alt="" />
             <h5 class="text-lg font-bold">Richard Watts</h5>
             <p class="text-sm text-darkGrayishBlue">
-              “Manage has supercharged our team’s workflow. The ability to
-              maintain visibility on larger milestones at all times keeps
-              everyone motivated.”
+              "This tool exceeded my expectations! It's lightning-fast, easy to use, and the results are stunning. I highly recommend it to anyone looking for professional-looking images without the hassle."
             </p>
           </div>
         </div>
         <!-- Button -->
         <div class="my-16">
-          <a
-            href="#"
+          <router-link
+            :to="{name: 'Register'}"
             class="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
-            >Get Started</a
+            >Get Started</router-link
           >
         </div>
       </div>
@@ -303,14 +201,14 @@
         <h2
           class="text-5xl font-bold text-center text-white md:text-4xl md:max-w-xl md:text-left"
         >
-          Simplify how your team works today
+          Remove Backgrounds with the Click of a Button!
         </h2>
         <!-- Button -->
         <div>
-          <a
-            href="#"
+          <router-link
+            :to="{name: 'Register'}"
             class="p-3 px-6 pt-2 text-brightRed bg-white rounded-full shadow-2xl baseline hover:bg-gray-900"
-            >Get Started</a
+            >Get Started</router-link
           >
         </div>
       </div>
@@ -319,111 +217,16 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
 import pb from '@/services/PocketConfig';
-import { logError, getToast } from '@/utils/helpers'
-
-import { RouterLink } from "vue-router";
-import WButton from "@/components/actions/WButton.vue";
-import Card from "@/components/surface/Card";
-import VueLogo from "@/components/util/VueLogo";
-import TailwindLogo from "@/components/util/TailwindLogo";
-import VFlex from "@/components/layout/VFlex";
-import IconModel from "@/components/icons/IconModel";
-import IconContainerSoftware from "@/components/icons/IconContainerSoftware";
-import IconMoon from "@/components/icons/IconMoon";
-import WAvatar from "@/components/data-display/WAvatar.vue";
-import IconNotification from "@/components/icons/IconNotification";
-import IconHome from "@/components/icons/IconHome";
-import IconChat from "@/components/icons/IconChat";
-import WIconWithBadge from "@/components/data-display/WIconWithBadge.vue";
-import IconShoppingCart from "@/components/icons/IconShoppingCart";
-import IconFavorite from "@/components/icons/IconFavorite";
-import WBadge from "@/components/data-display/WBadge.vue";
-import WGrid from "@/components/layout/Grid";
-import { ImgComparisonSlider } from '@img-comparison-slider/vue';
+import BGRemover from './components/BGRemover.vue'
 
 export default {
   name: "Home",
   data: () => ({
-    step: 0,
-    tasks: [{
-        "title": "Uploading image",
-        "description": "We are currently uploading your image to our AI server."
-    }, {
-        "title": "Analyzing image",
-        "description": "We are analyzing your image to determine the best enhancement methods."
-    }, {
-        "title": "Enhancing image",
-        "description": "We are now applying enhancement algorithm to your image."
-    }, {
-        "title": "Super Resolution",
-        "description": "Applying Super Resolution algorithm for even clearer results."
-    }, {
-        "title": "Saving image",
-        "description": "We are now saving the enhanced image for you."
-    }, {
-        "title": "About To finish",
-        "description": "About to finish processing your image, be ready"
-    }, {
-        "title": "Finished",
-        "description": "You can also check your images on your profile page"
-    }],
-    image: null,
-    loadingInterval: null,
-    isImageLoaded: false,
-    isImageError: false,
-    isLoading: false
   }),
   beforeUnmount: function() {
-    clearInterval(this.loadingInterval)
   },
   methods: {
-    retry: function() {
-      this.step = 0
-      this.image = null
-      this.loadingInterval = null
-      this.isLoading = false
-      this.isImageLoaded = false
-      this.isImageError = false
-      this.$refs.image.value = "";
-    },
-    onFileChange: async function() {
-      if (this.user) {
-        this.isLoading = true
-        let formData = new FormData();
-        formData.append('image', this.$refs.image.files[0]);
-        formData.append('user', this.user.id)
-        try {
-          this.image = await pb.collection('images').create(formData);
-          pb.collection('images').subscribe(this.image.id, (e) => {
-            this.image = e.record
-            this.image.publicSrc = `${process.env.VUE_APP_POCKET_API}/api/files/c83ukhcc0l9jq90/${this.image.id}/${this.image.image}`,
-            this.image.optimizedPublicSrc = `${process.env.VUE_APP_POCKET_API}/api/files/c83ukhcc0l9jq90/${this.image.id}/${this.image.convertedImage}`
-            if (e.record.isProcessing && !e.record.isReady) {
-              if (this.step == 1) this.step = 2
-              this.loadingInterval = setInterval(() => {
-                if (this.step < 6) this.step += 1
-              }, 4000)
-            } else if (e.record.isReady) {
-              //clearInterval(this.loadingInterval)
-              this.step = 6
-            }
-          });
-          this.step = 1
-        } catch (error) {
-          logError(this, error)
-          clearInterval(this.loadingInterval)
-          this.isLoading = false
-        }
-      } else {
-        getToast(this).fire({
-            icon: 'warning',
-            title: "Login to your account first !"
-        });
-        this.$router.push({ name: "Login" })
-      }
-    }
   },
   computed: {
     user: function() {
@@ -432,25 +235,12 @@ export default {
     }
   },
   components: {
-    ImgComparisonSlider,
-    Card,
-    "w-btn": WButton,
-    VueLogo,
-    TailwindLogo,
-    VFlex,
-    WGrid,
-    WAvatar,
-    IconModel,
-    IconContainerSoftware,
-    IconNotification,
-    IconMoon,
-    IconHome,
-    IconChat,
-    WIconWithBadge,
-    IconFavorite,
-    IconShoppingCart,
-    WBadge,
-  },
-
+    BGRemover
+  }
 }
 </script>
+<style scoped>
+.drag-drop-zone.active {
+  border-color: rgb(35, 108, 35);
+}
+</style>

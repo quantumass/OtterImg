@@ -48,7 +48,7 @@
             </button>
             </form>
 
-            <hr class="my-6 border-gray-300 w-full">
+            <!-- <hr class="my-6 border-gray-300 w-full">
 
             <button type="button" class="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300">
                 <div class="flex items-center justify-center">
@@ -58,7 +58,7 @@
                 with
                 Google</span>
                 </div>
-                </button>
+                </button> -->
 
             <p class="mt-8">Have already an account? 
                 <router-link :to="{name: 'Login'}" class="text-blue-500 hover:text-blue-700 font-semibold">
@@ -101,6 +101,11 @@ export default {
         isLoading: false,
         isCreated: false
     }),
+    mounted: function() {
+        if (pb.authStore && pb.authStore.baseModel && pb.authStore.baseModel.verified) {
+            this.$router.push({ name: "Profile" })
+        }
+    },
     methods: {
         resend: async function() {
             this.isLoading = true

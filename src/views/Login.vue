@@ -38,7 +38,7 @@
             </button>
             </form>
 
-            <hr class="my-6 border-gray-300 w-full">
+            <!-- <hr class="my-6 border-gray-300 w-full">
 
             <button type="button" class="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300">
                 <div class="flex items-center justify-center">
@@ -48,7 +48,7 @@
                 with
                 Google</span>
                 </div>
-                </button>
+                </button> -->
 
             <p class="mt-8">Need an account? 
               <router-link :to="{name: 'Register'}" class="text-blue-500 hover:text-blue-700 font-semibold">Create an
@@ -89,9 +89,10 @@ export default {
         isValid: true
     }),
     mounted: function() {
-        if (pb.authStore && pb.authStore.baseModel && !pb.authStore.baseModel.verified) {
+        console.log("pb.authStore.model: ", pb.authStore.model)
+        if (pb.authStore && pb.authStore.model && !pb.authStore.model.verified) {
             this.isValid = false
-        } else if (pb.authStore && pb.authStore.baseModel && pb.authStore.baseModel.verified) {
+        } else if (pb.authStore && pb.authStore.model && pb.authStore.model.verified) {
             this.$router.push({ name: "Profile" })
         }
     },
@@ -99,7 +100,7 @@ export default {
         resend: async function() {
             this.isLoading = true
             try {
-                await pb.collection('users').requestVerification(pb.authStore.baseModel.email || this.form.email)
+                await pb.collection('users').requestVerification(pb.authStore.model.email || this.form.email)
                 this.isLoading = false
             } catch (error) {
                 this.isLoading = false
@@ -117,7 +118,7 @@ export default {
                     this.form.password,
                 );
 
-                if (!pb.authStore.baseModel.verified) {
+                if (!pb.authStore.model.verified) {
                     this.isValid = false
                 } else {
                     let route = await this.$router.resolve({ name: "Profile" });

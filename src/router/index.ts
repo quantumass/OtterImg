@@ -22,12 +22,12 @@ export const routes: Array<RouteRecordRaw> = [
     component: Home,
     meta: { layout: 'default-layout' }
   },
-  {
-    path: '/pricing',
-    name: 'Pricing',
-    component: Pricing,
-    meta: { layout: 'default-layout' }
-  },
+  // {
+  //   path: '/pricing',
+  //   name: 'Pricing',
+  //   component: Pricing,
+  //   meta: { layout: 'default-layout' }
+  // },
   {
     path: '/profile',
     name: 'Profile',
@@ -52,12 +52,12 @@ export const routes: Array<RouteRecordRaw> = [
     component: About,
     meta: { layout: 'default-layout' }
   },
-  {
-    path: '/services',
-    name: 'Services',
-    component: Services,
-    meta: { layout: 'default-layout' }
-  },
+  // {
+  //   path: '/services',
+  //   name: 'Services',
+  //   component: Services,
+  //   meta: { layout: 'default-layout' }
+  // },
   {
     path: '/contact',
     name: 'Contact',

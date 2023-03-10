@@ -3,7 +3,7 @@
     <div class="container relative mx-auto flex max-w-6xl flex-wrap items-center justify-between">
       <router-link :to="{name: 'Home'}" class="flex items-center">
         <img :src="require('@/assets/img/logo-xxl.png')" class="absolute left-0 top-0 -mt-4 h-24 text-brightRed" alt="">
-        <span class=" ml-32 self-center whitespace-nowrap text-xl font-semibold">IMGOtter</span>
+        <span class=" ml-24 self-center whitespace-nowrap text-xl font-semibold">IMGOtter</span>
       </router-link>
       <div class="mt-2 sm:mt-0 sm:flex md:order-2">
         <!-- Login Button -->
@@ -21,12 +21,12 @@
           <li>
             <router-link :to="{name: 'Home'}" class="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-brightRed" aria-current="page">Home</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link :to="{name: 'Services'}" class="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-brightRed">Services</router-link>
           </li>
           <li>
             <router-link :to="{name: 'Pricing'}" class="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-brightRed" aria-current="page">Pricing</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link :to="{name: 'Contact'}" class="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-brightRed">Contact</router-link>
           </li>
@@ -65,39 +65,19 @@
             Copyright &copy; 2022, All Rights Reserved
           </div>
           <!-- Logo -->
-          <div>
-            <img :src="require('@/assets/img/logo-white.svg')" class="h-8" alt="" />
+          <div class="flex items-center text-white gap-2">
+            <img :src="require('@/assets/img/logo-xxl.png')" class="h-8" alt="" />
+            <span class=" text-xl ">IMGOtter</span>
           </div>
           <!-- Social Links Container -->
-          <div class="flex justify-center space-x-4">
-            <!-- Link 1 -->
-            <a href="#">
-              <img :src="require('@/assets/img/icon-facebook.svg')" alt="" class="h-8" />
-            </a>
-            <!-- Link 2 -->
-            <a href="#">
-              <img :src="require('@/assets/img/icon-youtube.svg')" alt="" class="h-8" />
-            </a>
-            <!-- Link 3 -->
-            <a href="#">
-              <img :src="require('@/assets/img/icon-twitter.svg')" alt="" class="h-8" />
-            </a>
-            <!-- Link 4 -->
-            <a href="#">
-              <img :src="require('@/assets/img/icon-pinterest.svg')" alt="" class="h-8" />
-            </a>
-            <!-- Link 5 -->
-            <a href="#">
-              <img :src="require('@/assets/img/icon-instagram.svg')" alt="" class="h-8" />
-            </a>
-          </div>
+          
         </div>
         <!-- List Container -->
         <div class="flex justify-around space-x-32">
           <div class="flex flex-col space-y-3 text-white">
             <router-link :to="{name: 'Home'}" class="hover:text-brightRed">Home</router-link>
             <router-link :to="{name: 'About'}" class="hover:text-brightRed">About</router-link>
-            <router-link :to="{name: 'Services'}" class="hover:text-brightRed">Services</router-link>
+            <!-- <router-link :to="{name: 'Services'}" class="hover:text-brightRed">Services</router-link> -->
             <router-link :to="{name: 'Contact'}" class="hover:text-brightRed">Contact</router-link>
           </div>
           <div class="flex flex-col space-y-3 text-white">
@@ -124,7 +104,7 @@
             </div>
           </form>
           <div class="hidden text-white md:block">
-            Copyright &copy; 2022, All Rights Reserved
+            Copyright &copy; 2023, All Rights Reserved
           </div>
         </div>
       </div>

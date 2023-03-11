@@ -112,14 +112,6 @@
 </template>
 
 <script>
-import WButton from "@/components/actions/WButton.vue";
-import IconLogoGithub from "@/components/icons/IconLogoGithub";
-import IconModel from "@/components/icons/IconModel";
-import IconHome from "@/components/icons/IconHome";
-import IconDashboard from "@/components/icons/IconDashboard";
-import IconUser from "@/components/icons/IconUser";
-import IconSun from "../../components/icons/IconSun";
-import IconMoon from "../../components/icons/IconMoon";
 import pb from '@/services/PocketConfig';
 import { getToast, logError } from '@/utils/helpers'
 
@@ -141,14 +133,7 @@ export default {
     },
   },
   components: {
-    "w-btn": WButton,
-    IconLogoGithub,
-    IconModel,
-    IconHome,
-    IconDashboard,
-    IconUser,
-    IconSun,
-    IconMoon,
+
   },
   methods: {
     addToNewsletter: async function() {

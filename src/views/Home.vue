@@ -9,7 +9,7 @@
         <!-- Left item -->
         <div class="flex flex-col mb-32 space-y-12 md:w-1/2">
           <h1
-            class="text-4xl font-bold text-center md:text-5xl md:text-left"
+            class="text-2xl font-bold text-center md:text-4xl md:text-left"
           >
             Quick & Easy Background Remover Tool: Remove Image Backgrounds in Seconds
           </h1>

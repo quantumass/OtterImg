@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import DashboardLayout from "./layouts/DashboardLayout/DashboardLayout.vue";
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout.vue";
 import { FadeInOut } from 'vue3-transitions';
 import pb from '@/services/PocketConfig';
@@ -25,7 +24,6 @@ export default {
   },
   components: {
     DefaultLayout,
-    DashboardLayout,
     FadeInOut
   },
   watch: {

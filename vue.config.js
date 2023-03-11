@@ -1,5 +1,11 @@
 module.exports = {
-	css: {
+    css: {
 		extract: false,
 	},
+
+    publicPath: '',
+
+    pluginOptions: {
+      cordovaPath: 'cordova-src'
+    }
 };

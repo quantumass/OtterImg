@@ -31,7 +31,7 @@
             Or
             </span>
             <span
-            class="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]"
+            class="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] bg-white"
             >
             Browse
             </span>
@@ -260,6 +260,13 @@
   }
   </script>
   <style scoped>
+  .drag-drop-zone {
+    background-image: url(https://preview.redd.it/qwd83nc4xxf41.jpg?auto=webp&s=172adf428061ec1b71c0d43b7ba870f85d46a816);
+    background-repeat: repeat;
+    background-size: 20rem;
+    color: #6c6c6c;
+    text-transform: uppercase;
+  }
   .drag-drop-zone.active {
     border-color: rgb(35, 108, 35);
   }

@@ -6,7 +6,7 @@
         </div>
 
         <div class="bg-white shadow-lg w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 xl:w-2/4 h-full
-            flex items-center justify-center px-24 py-8">
+            flex items-center justify-center md:px-24 px-8 py-8">
 
         <div v-if="!isCreated" class="w-full h-100">
 

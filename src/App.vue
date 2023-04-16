@@ -1,8 +1,8 @@
 <template>
   <component :is="layout">
-    <FadeInOut entry="center" exit="center" :duration="500" mode="out-in">
+    <!-- <FadeInOut entry="center" exit="center" :duration="500" mode="out-in"> -->
       <router-view></router-view>
-    </FadeInOut>
+    <!-- </FadeInOut> -->
   </component>
 </template>
 

@@ -3,7 +3,7 @@
         <div class="mt-12">
             <div class="text-center font-semibold">
                 <h1 class="text-5xl">
-                    <span class="text-brightRed tracking-wide">Flexible </span>
+                    <span class="text-primary tracking-wide">Flexible </span>
                     <span>Plans</span>
                 </h1>
                 <p class="pt-6 text-xl text-gray-400 font-normal w-full px-8 md:w-full">
@@ -47,7 +47,7 @@
                         </p>
 
                         <a href="#" class="">
-                            <p class="w-full py-4 bg-brightRed mt-8 rounded-xl text-white">
+                            <p class="w-full py-4 bg-primary mt-8 rounded-xl text-white">
                                 <span class="font-medium">
                                     Choose Plan
                                 </span>
@@ -94,7 +94,7 @@
                         </p>
 
                         <a href="#" class="">
-                            <p class="w-full py-4 bg-brightRed mt-8 rounded-xl text-white">
+                            <p class="w-full py-4 bg-primary mt-8 rounded-xl text-white">
                                 <span class="font-medium">
                                     Choose Plan
                                 </span>
@@ -144,7 +144,7 @@
                         </p>
 
                         <a href="#" class="">
-                            <p class="w-full py-4 bg-brightRed mt-8 rounded-xl text-white">
+                            <p class="w-full py-4 bg-primary mt-8 rounded-xl text-white">
                                 <span class="font-medium">
                                     Choose Plan
                                 </span>

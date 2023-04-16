@@ -78,7 +78,7 @@
                                 <font-awesome-icon :icon="['fas', 'download']" class="mr-2 w-4" />
                                 DOWNLOAD
                             </a>
-                            <button @click="retry" class="bg-brightRed inline-flex items-center text-white w-full mt-2 py-2 px-4 rounded">
+                            <button @click="retry" class="bg-primary inline-flex items-center text-white w-full mt-2 py-2 px-4 rounded">
                                 <font-awesome-icon :icon="['fas', 'arrows-rotate']" class="mr-2 w-4" />
                                 Try another one
                             </button>

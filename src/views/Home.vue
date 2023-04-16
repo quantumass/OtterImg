@@ -20,7 +20,7 @@
           <!-- <div class="flex justify-center md:justify-start">
             <a
               href="#"
-              class="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
+              class="p-3 px-6 pt-2 text-white bg-primary rounded-full baseline hover:bg-primaryLight"
               >Get Started</a
             >
           </div> -->
@@ -55,10 +55,10 @@
             class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
           >
             <!-- Heading -->
-            <div class="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div class="rounded-l-full bg-primarySupLight md:bg-transparent">
               <div class="flex items-center space-x-2">
                 <div
-                  class="px-4 py-2 text-white rounded-full md:py-1 bg-brightRed"
+                  class="px-4 py-2 text-white rounded-full md:py-1 bg-primary"
                 >
                   01
                 </div>
@@ -83,10 +83,10 @@
             class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
           >
             <!-- Heading -->
-            <div class="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div class="rounded-l-full bg-primarySupLight md:bg-transparent">
               <div class="flex items-center space-x-2">
                 <div
-                  class="px-4 py-2 text-white rounded-full md:py-1 bg-brightRed"
+                  class="px-4 py-2 text-white rounded-full md:py-1 bg-primary"
                 >
                   02
                 </div>
@@ -111,10 +111,10 @@
             class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
           >
             <!-- Heading -->
-            <div class="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div class="rounded-l-full bg-primarySupLight md:bg-transparent">
               <div class="flex items-center space-x-2">
                 <div
-                  class="px-4 py-2 text-white rounded-full md:py-1 bg-brightRed"
+                  class="px-4 py-2 text-white rounded-full md:py-1 bg-primary"
                 >
                   03
                 </div>
@@ -184,7 +184,7 @@
         <div class="my-16">
           <router-link
             :to="{name: 'Register'}"
-            class="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
+            class="p-3 px-6 pt-2 text-white bg-primary rounded-full baseline hover:bg-primaryLight"
             >Get Started</router-link
           >
         </div>
@@ -192,7 +192,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="cta" class="bg-brightRed">
+    <section id="cta" class="bg-primary">
       <!-- Flex Container -->
       <div
         class="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:space-y-0"
@@ -207,7 +207,7 @@
         <div>
           <router-link
             :to="{name: 'Register'}"
-            class="p-3 px-6 pt-2 text-brightRed bg-white rounded-full shadow-2xl baseline hover:bg-gray-900"
+            class="p-3 px-6 pt-2 text-primary bg-white rounded-full shadow-2xl baseline hover:bg-gray-900"
             >Get Started</router-link
           >
         </div>

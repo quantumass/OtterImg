@@ -51,7 +51,7 @@ focus:bg-white focus:outline-none">
                 <textarea v-model="form.bio" placeholder="Enter Bio" class="w-full px-4 py-3 rounded-lg mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete></textarea>
             </div>
 
-        
+
     </div>
     <div class="shadow-lg -m-4 p-4 bg-white">
       <button type="submit" class="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
@@ -76,9 +76,9 @@ focus:bg-white focus:outline-none">
       <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64 pb-6">
         <div class="bg-white mb-8">
             <nav class="flex flex-col sm:flex-row relative">
-                <button 
-                  v-for="(tab, index) in tabNames" 
-                  :key="index" 
+                <button
+                  v-for="(tab, index) in tabNames"
+                  :key="index"
                   class=" py-4 px-6 block hover:text-indigo-500 focus:outline-none  border-b-2 font-medium"
                   :class="selectedTab == tab || (index == 0 && selectedTab === null) ? 'text-indigo-500 border-indigo-500 z-10' : 'text-gray-400 border-white'"
                   @click="selectTab(tab)"
@@ -92,15 +92,15 @@ focus:bg-white focus:outline-none">
           <div class="flex flex-wrap justify-center">
             <div class="w-full lg:w-4/12 px-4 lg:order-2">
               <div class="relative h-32 w-full flex justify-center">
-                <img 
+                <img
                     v-if="user.avatar != 'filename.jpg' && user.avatar"
-                    alt="..." 
-                    :src="user.avatar" 
+                    alt="..."
+                    :src="user.avatar"
                     class="shadow-xl rounded-full align-middle border-none absolute h-full w-32"
                 >
                 <svg v-else class="shadow-xl rounded-full h-auto align-middle border-none absolute" viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="128" height="128"><title>Elizabeth Cady</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#fff5d6"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(333 18 18) scale(1)" fill="#d96153" rx="6"></rect><g transform="translate(3.5 3.5) rotate(-3 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="11" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="23" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
               </div>
-              
+
             </div>
             <div class="w-full lg:w-4/12 lg:order-3 lg:text-right lg:self-center text-center">
             </div>
@@ -116,7 +116,7 @@ focus:bg-white focus:outline-none">
               {{ user.email }}
             </div>
             <div class="py-2 inline-block sm:mt-0">
-              <button @click="showUserForm" class="bg-brightRed w-28 flex items-center gap-1 active:bg-brightRedLight uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+              <button @click="showUserForm" class="bg-primary w-28 flex items-center gap-1 active:bg-primaryLight uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
                 <div class="flex items-center gap-1">
                   <font-awesome-icon :icon="['fas', 'edit']" class="inline-block w-4" />
                   Update
@@ -142,7 +142,7 @@ focus:bg-white focus:outline-none">
             </div>
             <div>
               <router-link :to="{ name: 'Profile', query: { tab: tabNames[1]} }" class="bg-gradient-to-r from-yellow-500 to-yellow-600 inline-flex items-center gap-1 active:bg-black-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                <font-awesome-icon :icon="['fas', 'credit-card']" class="inline-block w-2" />  
+                <font-awesome-icon :icon="['fas', 'credit-card']" class="inline-block w-2" />
                 buy 300 credits
               </router-link>
             </div>
@@ -159,7 +159,7 @@ focus:bg-white focus:outline-none">
                 <p v-if="user.bio" class="mb-4 text-lg leading-relaxed text-blueGray-700">
                   {{ user.bio }}
                 </p>
-                <a href="#" v-else @click="showUserForm" class="font-normal text-brightRed">Add your bio</a>
+                <a href="#" v-else @click="showUserForm" class="font-normal text-primary">Add your bio</a>
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@ focus:bg-white focus:outline-none">
                 <div v-if="totalImages == 0">
                   You didn't upload any image
                   <br />
-                  <router-link :to="{name: 'Home'}" class="font-normal text-brightRed">START NOW</router-link>
+                  <router-link :to="{name: 'Home'}" class="font-normal text-primary">START NOW</router-link>
                 </div>
                 <div v-for="(image, key) in images" :key="key" v-show="!image.isHidden" class="picture_wrapper">
                   <div>
@@ -191,7 +191,7 @@ focus:bg-white focus:outline-none">
                 </div>
             </div>
             <div class="w-full text-center">
-              <button v-if="imagesLoaded && page < totalPages" @click="loadMore" class="bg-brightRed inline-flex justify-center items-center text-white mt-2 py-2 px-4 rounded">
+              <button v-if="imagesLoaded && page < totalPages" @click="loadMore" class="bg-primary inline-flex justify-center items-center text-white mt-2 py-2 px-4 rounded">
                 <font-awesome-icon :icon="['fas', 'arrows-rotate']" :class="isLoadingMore ? 'animate-spin' : ''" class="mr-2 w-4" />
                 Load more
               </button>
@@ -319,11 +319,14 @@ focus:bg-white focus:outline-none">
             </div>
           </div>
         </section>
+        <section v-if="selectedTab == tabNames[4]" class="main container flex flex-wrap gap-4 mx-auto px-4">
+          <messaging></messaging>
+        </section>
       </div>
     </div>
   </section>
   </template>
-  
+
   <script>
 
   import pb from '@/services/PocketConfig';
@@ -331,6 +334,7 @@ focus:bg-white focus:outline-none">
   import { $vfm, VueFinalModal, ModalsContainer } from 'vue-final-modal'
   import { ImgComparisonSlider } from '@img-comparison-slider/vue';
   import BGRemover from './components/BGRemover.vue'
+  import Messaging from './components/Messaging.vue'
 
   export default {
     data: () => ({
@@ -350,7 +354,7 @@ focus:bg-white focus:outline-none">
             {name: "The Level Up", description: "consistently generating more and more creative and funny images", university: "University of Upgraders"}
         ],
         selectedTab: null,
-        tabNames: ["Personal Informations", "Buying more credits", "Gallery", "Tools"],
+        tabNames: ["Personal Informations", "Buying more credits", "Gallery", "Tools", "Messaging"],
         form: {},
         page: 1,
         totalImages: 0,
@@ -368,6 +372,7 @@ focus:bg-white focus:outline-none">
     components: {
         VueFinalModal,
         ModalsContainer,
+        Messaging,
         BGRemover,
         ImgComparisonSlider
     },
@@ -394,6 +399,7 @@ focus:bg-white focus:outline-none">
           var head = document.getElementsByTagName("head")[0];
           head.appendChild(script);
           this.checkRoutes()
+
         } else {
           this.$router.push({ name: 'Login' })
         }
@@ -422,7 +428,7 @@ focus:bg-white focus:outline-none">
               color: 'gold',
               layout: 'vertical',
               label: 'paypal',
-              
+
             },
 
             createOrder: function(data, actions) {

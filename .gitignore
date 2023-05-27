@@ -26,3 +26,4 @@ pnpm-debug.log*
 /cordova-src/platforms
 /cordova-src/plugins
 /public/cordova.js
+backend

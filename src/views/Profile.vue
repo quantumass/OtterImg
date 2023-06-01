@@ -715,7 +715,8 @@ export default {
 	mounted: function() {
 		if (pb.authStore && pb.authStore.model) {
 			this.user = pb.authStore.model;
-			this.user.avatar = `${process.env.VUE_APP_POCKET_API}/api/files/_pb_users_auth_/${this.user.id}/${this.user.avatar}`;
+			if (this.user.avatar != "filename.jpg" && this.user.avatar)
+				this.user.avatar = `${process.env.VUE_APP_POCKET_API}/api/files/_pb_users_auth_/${this.user.id}/${this.user.avatar}`;
 			this.getImages();
 			// Create a new script element
 			var script = document.createElement("script");

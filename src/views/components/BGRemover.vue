@@ -49,7 +49,7 @@
 							<div class="w-full h-2 bg-blue-200 rounded-full">
 								<div
 									v-if="step < 6"
-									:class="`w-${step + 1}/6 h-full text-center text-xs text-white bg-blue-600 rounded-full`"
+									:class="`w-${(step > 3 ? 3 : step) + 1}/4 h-full text-center text-xs text-white bg-blue-600 rounded-full`"
 								></div>
 								<div
 									v-else

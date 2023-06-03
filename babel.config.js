@@ -1,4 +1,4 @@
-//little change more more more
+//little change more more more more
 module.exports = {
 	presets: ['@vue/cli-plugin-babel/preset'],
 };

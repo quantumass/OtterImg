@@ -188,6 +188,9 @@ export default {
 	beforeUnmount: function() {
 		clearInterval(this.loadingInterval);
 	},
+	mounted() {
+		console.log("mounted bg remover");
+	},
 	methods: {
 		// Generate unique session code
 		generateSessionCode() {
@@ -233,38 +236,47 @@ export default {
 			this.isDragging = false;
 		},
 		onFileChange: async function(file = null) {
-			if (
+			/*if (
 				(this.user && this.user.credits > 0) ||
 				(!this.user && !this.getSessionCode())
-			) {
-				this.isLoading = true;
-				let formData = new FormData();
-				formData.append("image", file || this.$refs.image.files[0]);
-				if (this.user) formData.append("user", this.user.id);
-				try {
-					this.image = await pb.collection("images").create(formData);
-					pb.collection("images").subscribe(this.image.id, e => {
-						this.image = e.record;
-						(this.image.publicSrc = `${process.env.VUE_APP_POCKET_API}/api/files/c83ukhcc0l9jq90/${this.image.id}/${this.image.image}`),
-							(this.image.optimizedPublicSrc = `${process.env.VUE_APP_POCKET_API}/api/files/c83ukhcc0l9jq90/${this.image.id}/${this.image.convertedImage}`);
-						if (e.record.isProcessing && !e.record.isReady) {
-							if (this.step == 1) this.step = 2;
-							this.loadingInterval = setInterval(() => {
-								if (this.step < 6) this.step += 1;
-							}, 4000);
-						} else if (e.record.isReady) {
-							//clearInterval(this.loadingInterval)
-							this.step = 6;
-							this.createSessionCode();
-						}
-					});
-					this.step = 1;
-				} catch (error) {
-					logError(this, error);
-					clearInterval(this.loadingInterval);
-					this.isLoading = false;
-				}
-			} else if (this.user && this.user.credits <= 0) {
+			) {*/
+			this.isLoading = true;
+			let formData = new FormData();
+			formData.append("image", file || this.$refs.image.files[0]);
+			if (this.user) formData.append("user", this.user.id);
+			try {
+				console.log("start listening to images");
+				this.image = await pb.collection("images").create(formData);
+				console.log("listening to images");
+				pb.collection("images").subscribe(this.image.id, e => {
+					console.log("subscribed to the ID ", this.image.id);
+					this.image = e.record;
+
+					if (e.record.isReady) {
+						this.image.publicSrc = `${process.env.VUE_APP_POCKET_API}/api/files/c83ukhcc0l9jq90/${e.record.id}/${e.record.image}`;
+
+						e.record.optimizedPublicSrc = `${process.env.VUE_APP_POCKET_API}/api/files/c83ukhcc0l9jq90/${e.record.id}/${e.record.convertedImage}`;
+					}
+
+					if (e.record.isProcessing && !e.record.isReady) {
+						if (this.step == 1) this.step = 2;
+						this.loadingInterval = setInterval(() => {
+							if (this.step < 6) this.step += 1;
+						}, 4000);
+					} else if (e.record.isReady) {
+						//clearInterval(this.loadingInterval)
+						this.step = 6;
+						this.createSessionCode();
+					}
+				});
+				this.step = 1;
+			} catch (error) {
+				console.log("error on ", error);
+				logError(this, error);
+				clearInterval(this.loadingInterval);
+				this.isLoading = false;
+			}
+			/*} else if (this.user && this.user.credits <= 0) {
 				this.message.text = ":( You should buy more credits !";
 				this.message.buttonText = "Buy credits";
 				this.message.action = {
@@ -278,7 +290,7 @@ export default {
 				this.message.action = {
 					name: "Register"
 				};
-			}
+			}*/
 		}
 	},
 	computed: {
